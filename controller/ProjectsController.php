@@ -16,12 +16,12 @@ class ProjectsController extends Controller
     public function projects(Request $request)
     {
         $validation = $this->validate($request, [
-            'auth.username' => 'required',
-            'auth.password' => 'required|min:8',
-            'auth.email' => 'required|min:8|email'
+
         ]);
 
+        $projects = DB::table('projects')->where('UID', '=',$request->user()->getAuthIdentifier());
 
+        $this->addResult('projects',$projects);
 
         return $this->getResponse();
     }
