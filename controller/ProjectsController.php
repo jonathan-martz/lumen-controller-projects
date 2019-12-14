@@ -19,7 +19,7 @@ class ProjectsController extends Controller
 
         ]);
 
-        $projects = DB::table('projects')->where('UID', '=',$request->user()->getAuthIdentifier());
+        $projects = DB::table('projects')->where('UID', '=',$request->user()->getAuthIdentifier())->get();
 
         $this->addResult('projects',$projects);
 
