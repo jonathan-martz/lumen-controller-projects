@@ -9,7 +9,8 @@
   },
   "autoload": {
     "classmap": [
-      "controller/"
+      "controller/",
+      "provider/"
     ]
   },
   "authors": [
