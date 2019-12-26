@@ -1,6 +1,6 @@
 {
   "name": "jonathan-martz/lumen-controller-projects",
-  "description": "Php Lumen Register Controller",
+  "description": "Php Lumen Projects Controller",
   "license": "MIT",
   "require": {
     "php": "^7.1|^7.2|^7.3|^7.4",
