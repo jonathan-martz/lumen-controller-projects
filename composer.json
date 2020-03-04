@@ -24,7 +24,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "App\\Providers\\ProjectProvider"
+        "App\\Providers\\ProjectsProvider"
       ]
     }
   }
