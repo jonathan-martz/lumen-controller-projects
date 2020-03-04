@@ -4,6 +4,10 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * Class CreateProjectsTable
+ * @todo move migration into own module
+ */
 class CreateProjectsTable extends Migration
 {
     /**
