@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
@@ -17,13 +16,9 @@ class ProjectsController extends Controller
     /**
      * @return mixed
      */
-    public function projects()
+    public function select()
     {
-        $validation = $this->validate($this->request, [
-
-        ]);
-
-        $projects = DB::table('projects')->where('UID', '=', $this->request->user()->getAuthIdentifier())->get();
+        $projects = DB::table('projects')->get();
 
         $this->addResult('projects', $projects);
 
