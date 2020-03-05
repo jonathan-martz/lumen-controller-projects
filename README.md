@@ -1,14 +1,11 @@
-#### User Model for Laravel (Lumen/Nova)
-Note: I split up the lumen model into lumen and nova.
-But i am not pretty sure if it works for all 3, so give it a try and give me your feedback.
-
-Branches:
-* master -> Laravel
-* lumen -> Lumen
-* nova -> Nova
+#### Project Controller for Laravel
+Note: This controller is still in development, dont use it in production!!!
 
 #### Why ?
 This Controller makes Projects available via api.
+
+#### Todo
+* rename controller to laravel ?
 
 ##### Copyright
 Copyright by Jonathan Martz
