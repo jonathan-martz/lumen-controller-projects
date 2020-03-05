@@ -4,7 +4,8 @@
   "license": "MIT",
   "require": {
     "php": "^7.3|^7.4",
-    "jonathan-martz/lumen-controller": "^0.3.7"
+    "jonathan-martz/lumen-controller": "^0.3.7",
+    "jonathan-martz/laravel-model-project": "^0.1"
   },
   "autoload": {
     "classmap": [
