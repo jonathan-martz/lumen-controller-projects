@@ -78,36 +78,40 @@ class ProjectsController extends Controller
     {
         $validation = $this->validate($this->request, [
             'project.name' => 'required|string',
-            'project.token' => 'required|string'
+            'project.prefix' => 'required|string'
         ]);
 
         $name = $this->request->input('project.name');
-        $token = $this->request->input('project.token');
+        $prefix = $this->request->input('project.prefix');
 
         $list['name'] = DB::table('projects')->where('name', '=', $name)->where('UID', '=', $this->request->user()->getAuthIdentifier())->get();
-        $list['token'] = DB::table('projects')->where('token', '=', $token)->where('UID', '=', $this->request->user()->getAuthIdentifier())->get();
-        $list['both'] = DB::table('projects')->where('token', '=', $token)->where('UID', '=', $this->request->user()->getAuthIdentifier())->where('name', '=', $name)->get();
+        $list['prefix'] = DB::table('projects')->where('prefix', '=', $prefix)->where('UID', '=', $this->request->user()->getAuthIdentifier())->get();
+        $list['both'] = DB::table('projects')->where('prefix', '=', $prefix)->where('UID', '=', $this->request->user()->getAuthIdentifier())->where('name', '=', $name)->get();
 
-        if ($list['name']->count() === 0 && $list['token']->count() === 0 && $list['both']->count() === 0) {
+        if($list['name']->count() === 0 && $list['prefix']->count() === 0 && $list['both']->count() === 0) {
 
             $insert = DB::table('projects')->insert([
                 'UID' => $this->request->user()->getAuthIdentifier(),
                 'name' => $name,
-                'token' => $token
+                'prefix' => $prefix
             ]);
 
-            if ($insert) {
+            if($insert) {
                 $this->addMessage('success', 'Project added.');
-            } else {
+            }
+            else {
                 $this->addMessage('warning', 'Project something went wrong while adding this project.');
             }
-        } else if ($list['name']->count() !== 0) {
+        } else if($list['name']->count() !== 0) {
             $this->addMessage('warning', 'Project with name already exists.');
-        } else if ($list['token']->count() !== 0) {
-            $this->addMessage('warning', 'Project with token already exists.');
-        } else if ($list['both']->count() !== 0) {
-            $this->addMessage('warning', 'Project with name/token already exists.');
-        } else {
+        }
+        else if($list['prefix']->count() !== 0) {
+            $this->addMessage('warning', 'Project with prefix already exists.');
+        }
+        else if($list['both']->count() !== 0) {
+            $this->addMessage('warning', 'Project with name/prefix already exists.');
+        }
+        else {
             $this->addMessage('error', 'Project something went wrong while adding this project 2.');
         }
 
@@ -121,12 +125,12 @@ class ProjectsController extends Controller
     {
         $validation = $this->validate($this->request, [
             'project.name' => 'required|string',
-            'project.token' => 'required|string',
+            'project.prefix' => 'required|string',
             'project.id' => 'required|integer'
         ]);
 
         $name = $this->request->input('project.name');
-        $token = $this->request->input('project.token');
+        $prefix = $this->request->input('project.prefix');
         $id = $this->request->input('project.id');
 
         $list['both'] = DB::table('projects')->where('id', '=', $id)->where('UID', '=', $this->request->user()->getAuthIdentifier())->get();
@@ -135,7 +139,7 @@ class ProjectsController extends Controller
 
             $update = DB::table('projects')->update([
                 'name' => $name,
-                'token' => $token
+                'prefix' => $prefix
             ]);
 
             if ($update) {
