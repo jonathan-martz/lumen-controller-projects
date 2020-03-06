@@ -18,9 +18,24 @@ class ProjectsController extends Controller
      */
     public function select()
     {
-        $projects = DB::table('projects')->get();
+        $validatedData = $this->request->validate([
+            'limit' => 'integer',
+            'highlight' => 'string'
+        ]);
 
-        $this->addResult('projects', $projects);
+        $limit = $this->request->input('limit');
+        $highlight = $this->request->input('highlight');
+        $projects = DB::table('projects');
+
+        if($limit) {
+            $projects->limit($limit);
+        }
+
+        if($highlight) {
+            $projects->where('highlight', '=', true);
+        }
+
+        $this->addResult('projects', $projects->get());
 
         return $this->getResponse();
     }
