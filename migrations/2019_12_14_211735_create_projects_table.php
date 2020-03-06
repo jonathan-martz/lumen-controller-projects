@@ -21,6 +21,7 @@ class CreateProjectsTable extends Migration
             $table->bigIncrements('id')->autoIncrement();
             $table->string('name');
             $table->string('prefix');
+            $table->boolean('highlight');
             $table->date('created_at');
             $table->date('updated_at');
         });
