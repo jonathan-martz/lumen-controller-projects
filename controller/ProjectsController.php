@@ -22,20 +22,9 @@ class ProjectsController extends Controller
             'limit' => 'integer',
             'highlight' => 'string'
         ]);
-
-        $limit = $this->request->input('limit');
-        $highlight = $this->request->input('highlight');
         $projects = DB::table('projects');
 
-        if($limit) {
-            $projects->limit($limit);
-        }
-
-        if($highlight) {
-            $projects->where('highlight', '=', true);
-        }
-
-        $this->addResult('projects', $projects->get());
+        $this->addData('projects', $projects->get());
 
         return $this->getResponse();
     }
@@ -56,7 +45,7 @@ class ProjectsController extends Controller
             ->where('id', '=', $id)
             ->get();
 
-        $this->addResult('project', $project[0]);
+        $this->addData('project', $project[0]);
 
         return $this->getResponse();
     }
